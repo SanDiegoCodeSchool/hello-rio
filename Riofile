@@ -1,0 +1,7 @@
+services:
+  hello-rio:
+    scale: 2
+    image: michaelerobertsjr/hello-rio:latest
+    imagePullPolicy: always
+    ports:
+    - 3000/http
