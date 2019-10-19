@@ -14,7 +14,7 @@ jobs:
     - name: Run tests
       uses: actions/setup-node@master
       with:
-        version: 10.x
+        node-version: 10.x
 
     - name: npm install
       run: npm install
@@ -27,6 +27,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REPO_OWNER: michaelerobertsjr
+    
     - name: Publish to registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
