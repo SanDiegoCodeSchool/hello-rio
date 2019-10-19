@@ -3,7 +3,7 @@ name: Build PR version
 on: 
   push:
     branches-ignore:
-      - master
+    - master
 
 jobs:
   test:
