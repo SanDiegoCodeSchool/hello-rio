@@ -5,7 +5,8 @@
   "author": "Michael Roberts Jr <michael.e.roberts.jr@gmail.com>",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "echo testing"
   },
   "dependencies": {
     "express": "^4.16.1"
