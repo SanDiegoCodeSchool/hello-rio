@@ -38,20 +38,25 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         REPO_OWNER: michaelerobertsjr
-    
-    - name: build hello-rio
-      run: docker build --build-arg "IMAGE_RELEASE_VERSION=$(echo
-        ${{ github.ref }} | cut -f3 -d'/')" -t hello-rio .
-    - name: tag
-      if: contains(github.ref, 'tags')
-      env:
-        REF: ${{ github. ref }}
-      run: docker tag hello-rio michaelerobertsjr/hello-rio:${REF##*/}
 
-    - name: Publish to registry
-      uses: elgohr/Publish-Docker-Github-Action@master
+     #This Action Emits 2 Variables, IMAGE_SHA_NAME and IMAGE_URL 
+     #which you can reference in subsequent steps
+    - name: Publish Docker Image to GPR
+      uses: machine-learning-apps/gpr-docker-publish@master
+      id: docker
       with:
-        name: michaelerobertsjr/hello-rio
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        # cache: true # Cache the non changed parts forever.
+        USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        IMAGE_NAME: 'test-docker-action'
+        DOCKERFILE_PATH: 'Dockerfile'
+        BUILD_CONTEXT: '/'
+
+    # This second step is illustrative and shows how to reference the 
+    # output variables.  This is completely optional.
+    - name: Show outputs of pervious step
+      run: |
+        echo "The name:tag of the Docker Image is: $VAR1"
+        echo "The docker image is hosted at $VAR2"
+      env:
+        VAR1: ${{ steps.docker.outputs.IMAGE_SHA_NAME }}
+        VAR2: ${{ steps.docker.outputs.IMAGE_URL }}
