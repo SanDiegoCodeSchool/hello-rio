@@ -40,13 +40,7 @@ jobs:
         REPO_OWNER: michaelerobertsjr
     
     - name: build hello-rio
-      run: docker build --build-arg "IMAGE_RELEASE_VERSION=$(echo
-        ${{ github.ref }} | cut -f3 -d'/')" -t hello-rio .
-    - name: tag
-      if: contains(github.ref, 'tags')
-      env:
-        REF: ${{ github.ref }}
-      run: docker tag hello-rio michaelerobertsjr/hello-rio:${REF##*/}
+      run: docker build -t hello-rio .
 
     - name: Publish to registry
       uses: elgohr/Publish-Docker-Github-Action@master
