@@ -5,3 +5,5 @@ services:
     imagePullPolicy: always
     ports:
     - 3000/http
+    env: # Specify environment variable
+    - CUSTOM_MSG=secret://rio-test-message/CUSTOM_MSG
