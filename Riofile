@@ -6,4 +6,4 @@ services:
     ports:
     - 3000/http
     env: # Specify environment variable
-    - CUSTOM_MSG="This is a custom message"
+    - CUSTOM_MSG=secret://secret/rio-test-message
