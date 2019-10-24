@@ -4,10 +4,8 @@ const morgan = require('morgan');
 let app = express();
 app.use(morgan('dev'));
 
-app.get('/', (req, res) => {
-    let message = process.env.CUSTOM_MSG || "Hello Rio, a Node.js app is running."
-    
-    res.send(`:::: INFO :::: \n ${JSON.stringify(process.env)}\n ::::::: \n ${message}`);
+app.get('/', (req, res) => {  
+    res.send(`Release ${process.env.APP_VERSION} \n The secret message is: \n ${process.env.CUSTOM_MSG}`);
 });
 
 module.exports = app;

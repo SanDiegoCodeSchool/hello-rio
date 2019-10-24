@@ -7,3 +7,5 @@ services:
     - 3000/http
     env: # Specify environment variable
     - CUSTOM_MSG=secret://rio-test-message/CUSTOM_MSG
+    - NODE_ENV=production
+    - APP_VERSION=1.0.0
