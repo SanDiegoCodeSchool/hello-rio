@@ -91,7 +91,7 @@ $ rio run -p 3000/http --env APP_VERSION=2.0 --image-pull-secrets=dockerconfig-p
 or from a file:
 
 ```
-rio run -p 3000/http --env-file .env --image-pull-secrets=dockerconfig-pull michaelerobertsjr/hello-rio:latest
+rio run -p 3000/http --env-file=.env --image-pull-secrets=dockerconfig-pull michaelerobertsjr/hello-rio:latest
 ```
 
 ## Removing an App
