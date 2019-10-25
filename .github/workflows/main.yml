@@ -1,0 +1,51 @@
+name: Run Tests
+
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - name: Run tests
+      uses: actions/setup-node@master
+      with:
+        node-version: 10.x
+
+    - name: npm install
+      run: npm install
+
+    - name: npm test
+      run: npm test
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - name: Print GitHub Context # Debug step
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+    
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REPO_OWNER: michaelerobertsjr
+    
+    - name: build hello-rio
+      run: docker build -t hello-rio .
+
+    - name: Publish to registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: michaelerobertsjr/hello-rio
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        # cache: true # Cache the non changed parts forever.

@@ -1,0 +1,15 @@
+{
+  "name": "hello-rio",
+  "version": "1.0.0",
+  "description": "A Dockerized FullStack JS application ready to run on Rancher Rio",
+  "author": "Michael Roberts Jr <mike@sdcs.io>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "test": "echo Not-testing-yet."
+  },
+  "dependencies": {
+    "express": "^4.16.1",
+    "morgan": "^1.9.1"
+  }
+}

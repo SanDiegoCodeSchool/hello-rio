@@ -1,0 +1,6 @@
+name: 'Build rio app action'
+description: 'Build a rio application using Github action'
+author: 'michaelerobertsjr'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

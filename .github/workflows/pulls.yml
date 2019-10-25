@@ -1,0 +1,23 @@
+name: Build PR version
+
+on: 
+  push:
+    branches-ignore:
+    - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - name: Run tests
+      uses: actions/setup-node@master
+      with:
+        node-version: 10.x
+
+    - name: npm install
+      run: npm install
+
+    - name: npm test
+      run: npm test
