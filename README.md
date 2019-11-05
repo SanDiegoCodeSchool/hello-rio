@@ -1,4 +1,4 @@
-# A Fullstack App running in Rio
+# A NodeJS app running in Rio
 
 This is an example to demonstrate how to use rio and actions to build a new docker container and then deploy an app on k8s.
 
