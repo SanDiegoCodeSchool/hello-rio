@@ -9,7 +9,7 @@
     "test": "echo Not-testing-yet."
   },
   "dependencies": {
-    "express": "^4.16.1",
+    "express": "^4.17.3",
     "morgan": "^1.9.1"
   }
 }
