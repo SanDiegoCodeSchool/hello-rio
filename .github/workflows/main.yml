@@ -43,7 +43,7 @@ jobs:
       run: docker build -t hello-rio .
 
     - name: Publish to registry
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@v5
       with:
         name: michaelerobertsjr/hello-rio
         username: ${{ secrets.DOCKER_USERNAME }}
